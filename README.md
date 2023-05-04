@@ -3,7 +3,7 @@
 The `kinesis-firehose-addon` generates an AWS IAM Policy that grants permissions to publish to the given AWS Kinesis Firehose.
 The policy will be attached to the AWS IAM Role specified by `var.iam_role_name`, if specified.
 
-Kinesis Firehoses Delivery Streams must be tagged with `${var.tag_name}=${var.environment}` in order to be accessible by this addon.
+Kinesis Firehose Delivery Streams must be tagged with `${var.tag_name}=${var.environment}` in order to be accessible by this addon.
 
 ```hcl
 module "kinesis_firehose_access" {

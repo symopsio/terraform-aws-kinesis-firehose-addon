@@ -2,7 +2,7 @@ resource "aws_iam_policy" "this" {
   name = "SymKinesisFirehose${title(var.environment)}"
   path = "/sym/"
 
-  description = "Addon policy granting access to Kinesis Firehose"
+  description = "AWS IAM Policy granting permissions to publish to Kinesis Firehose"
   policy      = <<EOT
 {
   "Version": "2012-10-17",
@@ -26,4 +26,12 @@ resource "aws_iam_policy" "this" {
   ]
 }
 EOT
+}
+
+resource "aws_iam_role_policy_attachment" "attach_firehose_access" {
+  # If an IAM Role is specified, then attach the policy to that IAM Role.
+  count = var.iam_role_name != "" ? 1 : 0
+
+  policy_arn = aws_iam_policy.this.arn
+  role       = var.iam_role_name
 }
